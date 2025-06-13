@@ -18,6 +18,24 @@ app.get('/api/usuarios', (req, res) => {
   ]);
 });
 
+app.get('/api/pokemon/ditto',async (req,res)=>{
+  try{
+    const url = 'https://pokeapi.co/api/v2/pokemon/ditto';
+    const respuesta = await fetch(url);
+    if(!respuesta.ok){
+      throw new Error('Error en la respuesta de la api');
+    }
+    const datos = await respuesta.json();
+    res.json(datos);
+
+    res.json()
+  }catch(error){
+    res.status(500).json({error : 'Error al consultar api pokemon fitto'});
+  }
+
+
+});
+
 app.post('/api/usuarios', (req, res) => {
   const nuevoUsuario = req.body;
   // Aquí normalmente lo guardarías en la base de datos
